@@ -1,32 +1,19 @@
-import { useNavigate } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { currentUser } from "../../data/mockData";
+import UserDetails from "./UserDetails";
+import HealthAnalysis from "./HealthAnalysis";
+import Comparison from "./Comparison";
+import Suggestions from "./Suggestions";
 
-const options = [
-  {
-    id: "user-details",
-    title: "User Details",
-    desc: "View and manage your personal and medical profile information.",
-    to: "/dashboard/user-details",
-  },
+const sections = [
+  { id: "user-details", label: "User Details", Component: UserDetails },
   {
     id: "health-analysis",
-    title: "Health Analysis",
-    desc: "A breakdown of your latest health parameters and trends.",
-    to: "/dashboard/health-analysis",
+    label: "Health Analysis",
+    Component: HealthAnalysis,
   },
-  {
-    id: "comparison",
-    title: "Comparison to Healthy Person",
-    desc: "See how your reports compare against healthy reference ranges.",
-    to: "/dashboard/comparison",
-  },
-  {
-    id: "suggestions",
-    title: "Suggestions",
-    desc: "Personalized suggestions based on your health data.",
-    to: "/dashboard/suggestions",
-  },
+  { id: "comparison", label: "Comparison", Component: Comparison },
+  { id: "suggestions", label: "Suggestions", Component: Suggestions },
 ];
 
 const badgeSvgs = {
@@ -70,40 +57,77 @@ const badgeSvgs = {
 };
 
 function Overview() {
-  const navigate = useNavigate();
+  const sectionRefs = useRef({});
+  const [activeId, setActiveId] = useState(sections[0].id);
+
+  const scrollToSection = (id) => {
+    sectionRefs.current[id]?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  // Scroll-spy: highlight whichever bookmark matches the section currently in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) {
+          setActiveId(visible[0].target.dataset.sectionId);
+        }
+      },
+      { rootMargin: "-120px 0px -55% 0px", threshold: [0.1, 0.25, 0.5, 0.75] },
+    );
+
+    sections.forEach(({ id }) => {
+      const el = sectionRefs.current[id];
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <>
-      <div className="dash-page-head">
-        <h1>Good Morning, {currentUser.name}! 👋</h1>
-        <p>Here's your health overview.</p>
-      </div>
+    <div className="dash-scroll-shell">
+      <div className="dash-scroll-main">
+        <div className="dash-page-head">
+          <h1>Good Morning, {currentUser.name}! 👋</h1>
+          <p>Here's your health overview.</p>
+        </div>
 
-      <div className="dashboard-options-grid">
-        {options.map(({ id, title, desc, to }) => (
-          <div
-            className="dashboard-option-card"
+        {sections.map(({ id, Component }) => (
+          <section
             key={id}
-            onClick={() => navigate(to)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && navigate(to)}
+            id={id}
+            data-section-id={id}
+            ref={(el) => (sectionRefs.current[id] = el)}
+            className="dash-scroll-section"
           >
-            <div className="dashboard-option-image-wrap">
-              <div className="option-badge-large">{badgeSvgs[id]}</div>
-            </div>
-
-            <div className="dashboard-option-content">
-              <div className="dashboard-option-title">{title}</div>
-              <p className="dashboard-option-desc">{desc}</p>
-              <span className="dashboard-option-link">
-                Open <ArrowRight size={14} strokeWidth={2} />
-              </span>
-            </div>
-          </div>
+            <Component />
+          </section>
         ))}
       </div>
-    </>
+
+      <aside className="dash-bookmarks">
+        <div className="dash-bookmarks-title">Bookmarks</div>
+        <div className="dash-bookmarks-list">
+          {sections.map(({ id, label }) => (
+            <button
+              key={id}
+              className={
+                "dash-bookmark-item" + (activeId === id ? " active" : "")
+              }
+              onClick={() => scrollToSection(id)}
+            >
+              <span className="dash-bookmark-badge">{badgeSvgs[id]}</span>
+              <span>{label}</span>
+            </button>
+          ))}
+        </div>
+      </aside>
+    </div>
   );
 }
 

@@ -37,6 +37,82 @@ export const chartSeries = {
   points: [11.6, 12.4, 11.4, 12.8, 11.9, 12.4, 11.6, 13.0],
 };
 
+// Mirrors the backend's HealthSnapshot.trends (Map<String, List<Stamp>>) —
+// each factor has its own dated value history, unit, and normal range so
+// the Health Analysis graph can switch between them.
+export const healthTrends = {
+  Hemoglobin: {
+    unit: "g/dL",
+    normalRange: [12, 16],
+    data: [
+      { date: "Jan 2026", value: 11.2 },
+      { date: "Feb 2026", value: 11.5 },
+      { date: "Mar 2026", value: 10.9 },
+      { date: "Apr 2026", value: 11.8 },
+      { date: "May 2026", value: 12.1 },
+      { date: "Jun 2026", value: 11.6 },
+      { date: "Jul 2026", value: 11.9 },
+      { date: "Aug 2026", value: 11.8 },
+    ],
+  },
+  "Blood Sugar (Fasting)": {
+    unit: "mg/dL",
+    normalRange: [70, 100],
+    data: [
+      { date: "Jan 2026", value: 96 },
+      { date: "Feb 2026", value: 102 },
+      { date: "Mar 2026", value: 99 },
+      { date: "Apr 2026", value: 108 },
+      { date: "May 2026", value: 101 },
+      { date: "Jun 2026", value: 94 },
+      { date: "Jul 2026", value: 97 },
+      { date: "Aug 2026", value: 100 },
+    ],
+  },
+  "Blood Pressure (Systolic)": {
+    unit: "mmHg",
+    normalRange: [90, 120],
+    data: [
+      { date: "Jan 2026", value: 118 },
+      { date: "Feb 2026", value: 122 },
+      { date: "Mar 2026", value: 119 },
+      { date: "Apr 2026", value: 126 },
+      { date: "May 2026", value: 121 },
+      { date: "Jun 2026", value: 117 },
+      { date: "Jul 2026", value: 120 },
+      { date: "Aug 2026", value: 119 },
+    ],
+  },
+  BMI: {
+    unit: "kg/m²",
+    normalRange: [18.5, 24.9],
+    data: [
+      { date: "Jan 2026", value: 23.1 },
+      { date: "Feb 2026", value: 23.4 },
+      { date: "Mar 2026", value: 23.0 },
+      { date: "Apr 2026", value: 22.8 },
+      { date: "May 2026", value: 22.6 },
+      { date: "Jun 2026", value: 22.9 },
+      { date: "Jul 2026", value: 22.7 },
+      { date: "Aug 2026", value: 22.5 },
+    ],
+  },
+  Cholesterol: {
+    unit: "mg/dL",
+    normalRange: [125, 200],
+    data: [
+      { date: "Jan 2026", value: 188 },
+      { date: "Feb 2026", value: 195 },
+      { date: "Mar 2026", value: 202 },
+      { date: "Apr 2026", value: 210 },
+      { date: "May 2026", value: 198 },
+      { date: "Jun 2026", value: 190 },
+      { date: "Jul 2026", value: 185 },
+      { date: "Aug 2026", value: 182 },
+    ],
+  },
+};
+
 export const quickActions = [
   {
     id: "upload",

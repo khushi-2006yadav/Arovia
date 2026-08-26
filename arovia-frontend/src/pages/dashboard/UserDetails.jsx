@@ -28,7 +28,7 @@ function UserDetails() {
   const fields = [
     { key: "name", label: "Full Name", icon: UserRound },
     { key: "email", label: "Email Address", icon: Mail },
-    { key: "phone", label: "Phone Number", icon: Phone },
+    //{ key: "phone", label: "Phone Number", icon: Phone },
     { key: "dob", label: "Date of Birth", icon: Calendar },
     { key: "gender", label: "Gender", icon: UserRound },
     { key: "location", label: "Location", icon: MapPin },
@@ -135,6 +135,18 @@ function UserDetails() {
             <div className="ud-card-title">
               <ShieldAlert size={15} strokeWidth={2} /> Medical Summary
             </div>
+            <div className="ud-med-block">
+              <div className="ud-med-label">
+                <Pill size={13} strokeWidth={2} /> Current Medications
+              </div>
+              <div className="ud-chip-row">
+                {emergencyInfo.medications.map((m) => (
+                  <span className="ud-chip blue" key={m}>
+                    {m}
+                  </span>
+                ))}
+              </div>
+            </div>
 
             <div className="ud-med-block">
               <div className="ud-med-label">Allergies</div>
@@ -173,18 +185,6 @@ function UserDetails() {
               </div>
             </div>
 
-            <div className="ud-med-block">
-              <div className="ud-med-label">
-                <Pill size={13} strokeWidth={2} /> Current Medications
-              </div>
-              <div className="ud-chip-row">
-                {emergencyInfo.medications.map((m) => (
-                  <span className="ud-chip blue" key={m}>
-                    {m}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>

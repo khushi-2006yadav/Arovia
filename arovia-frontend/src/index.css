@@ -691,6 +691,20 @@ h1 .accent {
   font-size: 18px;
   margin-bottom: 18px;
 }
+.feature-icon.blue { background: #dbeafe; color: #1c5fa8; }
+.feature-icon.purple { background: #ede9fe; color: #7c3aed; }
+.feature-icon.green { background: #dcfce7; color: #16a34a; }
+.feature-icon.navy { background: #0b2a4a; color: #7dd3fc; }
+
+.feature-card h4 {
+  display: inline-block;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+.feature-card h4.underline-blue { border-color: #93c5fd; }
+.feature-card h4.underline-purple { border-color: #c4b5fd; }
+.feature-card h4.underline-green { border-color: #86efac; }
+.feature-card h4.underline-navy { border-color: #0b2a4a; }
 
 .feature-card h4 {
   font-size: 15px;
