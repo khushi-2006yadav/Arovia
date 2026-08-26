@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TestResult {
 
+    private String category;
     private String testName;
 
     private Double value;
@@ -20,5 +21,9 @@ public class TestResult {
 
     private TestStatus status;
 
-    private Double confidence;
+    private Double ageGroup;
+
+    private String method;
+
+    private String timepoint;
 }

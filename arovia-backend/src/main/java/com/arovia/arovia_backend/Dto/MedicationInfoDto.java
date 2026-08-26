@@ -1,5 +1,6 @@
-package com.arovia.arovia_backend.Entity;
+package com.arovia.arovia_backend.Dto;
 
+import com.arovia.arovia_backend.Entity.Medicine;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MedicationInfo {
+public class MedicationInfoDto {
 
-    private Medicine medicine;
+    private String medicineName;
 
     private String dosage;
 
@@ -17,7 +18,7 @@ public class MedicationInfo {
 
     private String route;
 
-    private int duration;  //No of days
+    private int duration; // No of days
 
     private String instructions;
 

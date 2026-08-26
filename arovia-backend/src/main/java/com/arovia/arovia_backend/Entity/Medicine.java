@@ -1,14 +1,14 @@
 package com.arovia.arovia_backend.Entity;
 
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-// To cache Medicine details
 @Data
+@Document(collection = "medicines")
 public class Medicine {
-    private String name;
-    private String dosage;
-    private String genericName;
-    private String sideEffects;
-    private String uses;
 
+    private String medicineName;
+    private String activeSalts;
+    private String uses;
+    private String sideEffects;
 }
