@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo1.png";
-
+import {
+  Download,
+  Brain,
+  Pill,
+  ShieldCheck,
+  FlaskConical,
+  Stethoscope,
+  AlertTriangle,
+} from "lucide-react";
 
 function Home() {
   return (
@@ -283,32 +291,40 @@ function Home() {
 
         <div className="feature-grid">
           <div className="feature-card">
-            <div className="feature-icon">📥</div>
-            <h4>One Health Record</h4>
+            <div className="feature-icon blue">
+              <Download size={20} strokeWidth={2} />
+            </div>
+            <h4 className="underline-blue">One Health Record</h4>
             <p>
               Keep prescriptions, lab reports and medical documents organized in
               one place.
             </p>
           </div>
           <div className="feature-card">
-            <div className="feature-icon">🧠</div>
-            <h4>Understand your reports</h4>
+            <div className="feature-icon purple">
+              <Brain size={20} strokeWidth={2} />
+            </div>
+            <h4 className="underline-purple">Understand your reports</h4>
             <p>
               AI helps simplify complex medical information into
               easy-to-understand insights.
             </p>
           </div>
           <div className="feature-card">
-            <div className="feature-icon">💊</div>
-            <h4>Discover Affordable Options</h4>
+            <div className="feature-icon green">
+              <Pill size={20} strokeWidth={2} />
+            </div>
+            <h4 className="underline-green">Discover Affordable Options</h4>
             <p>
               Explore potential generic alternatives using trusted medicine
               information.
             </p>
           </div>
           <div className="feature-card">
-            <div className="feature-icon">🛡️</div>
-            <h4>You stay in Control</h4>
+            <div className="feature-icon navy">
+              <ShieldCheck size={20} strokeWidth={2} />
+            </div>
+            <h4 className="underline-navy">You stay in Control</h4>
             <p>
               Review, edit and manage your health information with full control
               over your data.
@@ -345,7 +361,9 @@ function Home() {
             </div>
 
             <div className="timeline-item">
-              <div className="timeline-dot normal">🧪</div>
+              <div className="timeline-dot normal">
+                <FlaskConical size={13} strokeWidth={2} />
+              </div>
               <div className="timeline-body">
                 <div className="timeline-date">JAN 2026 · 08 · Wed</div>
                 <div className="timeline-title">Blood Test</div>
@@ -358,7 +376,9 @@ function Home() {
             </div>
 
             <div className="timeline-item">
-              <div className="timeline-dot neutral">🩺</div>
+              <div className="timeline-dot neutral">
+                <Stethoscope size={13} strokeWidth={2} />
+              </div>
               <div className="timeline-body">
                 <div className="timeline-date">MAR 2026 · 12 · Thu</div>
                 <div className="timeline-title">Doctor Consultation</div>
@@ -373,7 +393,9 @@ function Home() {
             </div>
 
             <div className="timeline-item">
-              <div className="timeline-dot normal">🧪</div>
+              <div className="timeline-dot normal">
+                <FlaskConical size={13} strokeWidth={2} />
+              </div>
               <div className="timeline-body">
                 <div className="timeline-date">JUN 2026 · 18 · Wed</div>
                 <div className="timeline-title">Blood Test</div>
@@ -388,7 +410,9 @@ function Home() {
             </div>
 
             <div className="timeline-item">
-              <div className="timeline-dot flagged">⚠️</div>
+              <div className="timeline-dot flagged">
+                <AlertTriangle size={13} strokeWidth={2} />
+              </div>
               <div className="timeline-body">
                 <div className="timeline-date">AUG 2026 · 21 · Fri</div>
                 <div className="timeline-title">Blood Test</div>

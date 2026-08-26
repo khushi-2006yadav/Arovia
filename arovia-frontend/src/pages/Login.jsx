@@ -1,8 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo1.png";
 import "./login.css";
 
 function Login() {
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // No backend yet — any input logs you straight into the dashboard.
+    navigate("/dashboard");
+  };
+
   return (
     <div className="login-page">
       <header className="login-topbar">
@@ -29,32 +37,34 @@ function Login() {
             Sign in to access your health records.
           </p>
 
-          <label className="login-label">Email Address</label>
-          <div className="login-input-wrap">
-            <span className="login-input-icon">✉️</span>
-            <input
-              type="email"
-              placeholder="you@example.com"
-              className="login-input"
-            />
-          </div>
+          <form onSubmit={handleLogin}>
+            <label className="login-label">Email Address</label>
+            <div className="login-input-wrap">
+              <span className="login-input-icon">✉️</span>
+              <input
+                type="email"
+                placeholder="you@example.com"
+                className="login-input"
+              />
+            </div>
 
-          <label className="login-label">Password</label>
-          <div className="login-input-wrap">
-            <span className="login-input-icon">🔒</span>
-            <input
-              type="password"
-              placeholder="••••••••"
-              className="login-input"
-            />
-            <span className="login-eye-icon">👁️</span>
-          </div>
+            <label className="login-label">Password</label>
+            <div className="login-input-wrap">
+              <span className="login-input-icon">🔒</span>
+              <input
+                type="password"
+                placeholder="••••••••"
+                className="login-input"
+              />
+              <span className="login-eye-icon">👁️</span>
+            </div>
 
-          <div className="login-forgot">Forgot Password?</div>
+            <div className="login-forgot">Forgot Password?</div>
 
-          <button className="login-submit-btn">
-            Login <span>→</span>
-          </button>
+            <button type="submit" className="login-submit-btn">
+              Login <span>→</span>
+            </button>
+          </form>
 
           <div className="login-divider">
             <span></span>
@@ -62,7 +72,10 @@ function Login() {
             <span></span>
           </div>
 
-          <button className="login-google-btn">
+          <button
+            className="login-google-btn"
+            onClick={() => navigate("/dashboard")}
+          >
             <span className="login-google-icon">G</span>
             Continue with Google
           </button>
