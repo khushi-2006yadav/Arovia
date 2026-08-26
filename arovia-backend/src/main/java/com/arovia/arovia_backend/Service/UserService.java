@@ -29,6 +29,8 @@ public class UserService {
     private AuthenticationManager authenticationManager;
     @Autowired
     private JWTService jwtService;
+    @Autowired
+    private HealthSnapshotService healthSnapshotService;
 
     public void addUser(SignupDto signupDto)
     {
@@ -60,6 +62,7 @@ public class UserService {
                 signupDto.getFamilyDiseases()
         );
         patientRepository.save(patient);
+        healthSnapshotService.createSnapshot(patient);
     }
 
     public UserResponseDto loginUser(SigninDto signinDto) {

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,5 +27,5 @@ public class TestResult {
 
     private String method;
 
-    private String timepoint;
+    private LocalDate timepoint;
 }

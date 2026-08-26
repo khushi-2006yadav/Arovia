@@ -6,6 +6,8 @@ import com.arovia.arovia_backend.Service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/record")
 public class RecordController {
@@ -22,8 +24,14 @@ public class RecordController {
     }
 
     @GetMapping("/fetchRecord/{recordId}")
-    public MedicalRecord fetchRecord(@PathVariable String recordId)
+    public MedicalRecord fetchRecord(@PathVariable String recordId)           // A particular record of a user
     {
         return recordService.fetchRecord(recordId);
+    }
+
+    @GetMapping("/fetchRecords/{userId}")
+    public List<MedicalRecord> fetchRecords(@PathVariable String userId)      //ALL records of a user
+    {
+        return recordService.fetchRecords(userId);
     }
 }
