@@ -21,34 +21,20 @@ public class Patient {
 
     @Id
     private String userId;
-
     private String name;
-
     private String password;
-
     private String avatar;
-
     private LocalDate dob;
-
     private BloodGroup bloodGroup;
-
-
     private Gender gender;
-
     @Email
     @Indexed(unique = true)
     private String emailId;
-
     private Double weight;
     private Double height;
-
     private String location;
-
     private List<String> pastChronicDiseases;
-
     private List<String> familyDiseases;
-
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 }

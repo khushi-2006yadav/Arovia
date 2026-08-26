@@ -1,28 +1,20 @@
-package com.arovia.arovia_backend.Entity;
+package com.arovia.arovia_backend.Dto;
 
+import com.arovia.arovia_backend.Entity.Diagnosis;
+import com.arovia.arovia_backend.Entity.Doctor;
+import com.arovia.arovia_backend.Entity.MedicationInfo;
+import com.arovia.arovia_backend.Entity.TestResult;
 import com.arovia.arovia_backend.Enum.RecordType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "medicalRecords")
-public class MedicalRecord {
-
-    @Id
-    private String id;
-
-    @Indexed
-    private String userId;
+public class MedicalRecordDto {
 
     private RecordType recordType;
 
@@ -34,13 +26,11 @@ public class MedicalRecord {
 
     private List<TestResult> testResults;
 
-    private List<MedicationInfo> medications;
+    private List<MedicationInfoDto> medications;
 
     private Doctor doctor;
 
     private String observations;
 
     private String additionalDetails;
-
-    private LocalDateTime createdAt;
 }
