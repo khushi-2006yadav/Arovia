@@ -86,7 +86,7 @@ public class MedicationService {
         return medicine;
     }
 
-    public void addSubstitute( String userId, Medicine medicine)
+    public void addSubstitute( String userId, Medicine medicine, String substituteName)
     {
         Medication medication = medicationRepository
                 .findByUserId(userId)
@@ -99,8 +99,9 @@ public class MedicationService {
                 });  //Else ka case banega hi nahi
 
 
-        MedicationHistory medicationHistory=medication.getMedications().get(medicine)
+         List<MedicationHistory> list=medication.getMedications().get(medicine);
 
-
+         MedicationHistory medicationHistory=list.get(list.size()-1);
+         medicationHistory.setSubstitute(medicationHistory.getSubstitute()+" "+substituteName);
     }
 }

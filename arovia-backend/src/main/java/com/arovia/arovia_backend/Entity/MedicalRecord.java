@@ -30,7 +30,7 @@ public class MedicalRecord {
 
     private String title;
 
-    private List<Diagnosis> diagnoses;
+    private List<Diagnosis> diagnoses; // diseases
 
     private List<TestResult> testResults;
 

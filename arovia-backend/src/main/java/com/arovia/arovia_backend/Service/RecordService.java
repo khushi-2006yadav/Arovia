@@ -3,11 +3,9 @@ package com.arovia.arovia_backend.Service;
 import com.arovia.arovia_backend.Dto.MedicalRecordDto;
 import com.arovia.arovia_backend.Dto.MedicationInfoDto;
 import com.arovia.arovia_backend.Entity.MedicalRecord;
-import com.arovia.arovia_backend.Entity.Medication;
 import com.arovia.arovia_backend.Entity.MedicationInfo;
 import com.arovia.arovia_backend.Entity.Medicine;
 import com.arovia.arovia_backend.Repository.MedicalRecordRepository;
-import com.arovia.arovia_backend.Repository.MedicationRepository;
 import com.arovia.arovia_backend.Repository.MedicineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +23,8 @@ public class RecordService {
     private MedicineRepository medicineRepository;
     @Autowired
     private MedicationService medicationService;
-
+    @Autowired
+    private HealthSnapshotService healthSnapshotService;
 
     public String addRecord(String userId, MedicalRecordDto medicalRecordDto) {
 
@@ -36,8 +35,12 @@ public class RecordService {
         medicalRecord.setRecordDate(medicalRecordDto.getRecordDate());
         medicalRecord.setTitle(medicalRecordDto.getTitle());
         medicalRecord.setDiagnoses(medicalRecordDto.getDiagnoses());
-        medicalRecord.setTestResults(medicalRecordDto.getTestResults());
+        if(medicalRecordDto.getDiagnoses()!=null)
+            healthSnapshotService.addDiseases(userId,medicalRecordDto.getDiagnoses());
 
+        medicalRecord.setTestResults(medicalRecordDto.getTestResults());
+        if(medicalRecordDto.getTestResults()!=null)
+            healthSnapshotService.updateTrends( userId, medicalRecordDto.getTestResults());
         List<MedicationInfo> medications = new ArrayList<>();
 
         for (MedicationInfoDto medicationDto : medicalRecordDto.getMedications()) {
@@ -76,5 +79,9 @@ public class RecordService {
                 ()->new RuntimeException("No record Found")
         );
         return medicalRecord;
+    }
+
+    public List<MedicalRecord> fetchRecords(String userId) {
+        return medicalRecordRepository.findAllByUserId(userId);
     }
 }
