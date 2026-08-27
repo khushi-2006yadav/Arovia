@@ -1,2 +1,0 @@
-# Arovia
-Arovia project
