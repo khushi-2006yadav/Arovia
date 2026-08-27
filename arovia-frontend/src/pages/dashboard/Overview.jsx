@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Sun } from "lucide-react";
 import { currentUser } from "../../data/mockData";
 import UserDetails from "./UserDetails";
 import HealthAnalysis from "./HealthAnalysis";
@@ -93,7 +94,10 @@ function Overview() {
     <div className="dash-scroll-shell">
       <div className="dash-scroll-main">
         <div className="dash-page-head">
-          <h1>Good Morning, {currentUser.name}! 👋</h1>
+          <h1>
+            Good Morning, {currentUser.name}!{" "}
+            <Sun className="dash-heading-icon" size={32} strokeWidth={2.2} />
+          </h1>
           <p>Here's your health overview.</p>
         </div>
 

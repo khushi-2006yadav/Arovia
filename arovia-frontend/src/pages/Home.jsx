@@ -8,15 +8,43 @@ import {
   FlaskConical,
   Stethoscope,
   AlertTriangle,
+  Lock,
+  Sparkles,
+  Phone,
+  Home as HomeIcon,
+  ClipboardList,
+  LineChart,
+  Clock,
+  CreditCard,
+  Settings as SettingsIcon,
+  Search,
+  Sun,
+  HeartPulse,
+  Upload,
+  ScanLine,
+  BarChart3,
+  Bell,
+  Zap,
+  TrendingDown,
+  Scale,
+  Coins,
+  CircleCheck,
+  FileText,
 } from "lucide-react";
 
 function Home() {
   return (
     <>
       <div className="topbar">
-        <div className="item">🔒 Secure Medical Records</div>
-        <div className="item">✦ AI-Assisted Health Insights</div>
-        <div className="item">📞 Support: +91 62017 83336</div>
+        <div className="item">
+          <Lock size={12} strokeWidth={2} /> Secure Medical Records
+        </div>
+        <div className="item">
+          <Sparkles size={12} strokeWidth={2} /> AI-Assisted Health Insights
+        </div>
+        <div className="item">
+          <Phone size={12} strokeWidth={2} /> Support: +91 62017 83336
+        </div>
       </div>
 
       <nav className="navbar">
@@ -79,44 +107,74 @@ function Home() {
                   <div className="tag">Understand. Track. Care.</div>
                 </div>
               </div>
-              <div className="side-item active">🏠 Dashboard</div>
-              <div className="side-item">📋 My Records</div>
-              <div className="side-item">💊 Medicines</div>
-              <div className="side-item">📈 Insights</div>
-              <div className="side-item">🕐 Health Timeline</div>
-              <div className="side-item">💳 Emergency Card</div>
-              <div className="side-item">⚙️ Settings</div>
+              <div className="side-item active">
+                <HomeIcon size={12} strokeWidth={2} /> Dashboard
+              </div>
+              <div className="side-item">
+                <ClipboardList size={12} strokeWidth={2} /> My Records
+              </div>
+              <div className="side-item">
+                <Pill size={12} strokeWidth={2} /> Medicines
+              </div>
+              <div className="side-item">
+                <LineChart size={12} strokeWidth={2} /> Insights
+              </div>
+              <div className="side-item">
+                <Clock size={12} strokeWidth={2} /> Health Timeline
+              </div>
+              <div className="side-item">
+                <CreditCard size={12} strokeWidth={2} /> Emergency Card
+              </div>
+              <div className="side-item">
+                <SettingsIcon size={12} strokeWidth={2} /> Settings
+              </div>
             </div>
 
             {/* Center */}
             <div className="center-col">
               <div className="search-bar">
-                🔍 Search reports, medicines, or insights...
+                <Search size={12} strokeWidth={2} /> Search reports, medicines,
+                or insights...
               </div>
 
               <div className="greeting">
-                <div className="title">Good Morning, Nandani! 👋</div>
+                <div className="title">
+                  Good Morning, Nandani!{" "}
+                  <Sun
+                    size={13}
+                    strokeWidth={2.4}
+                    style={{ color: "#f59e0b", verticalAlign: "-2px" }}
+                  />
+                </div>
                 <div className="sub">Here's your health overview.</div>
               </div>
 
               <div className="stat-grid">
                 <div className="stat-card blue">
-                  <div className="stat-icon blue">📄</div>
+                  <div className="stat-icon blue">
+                    <FileText size={11} strokeWidth={2.2} />
+                  </div>
                   <div className="num c-blue">12</div>
                   <div className="label">Medical Records</div>
                 </div>
                 <div className="stat-card green">
-                  <div className="stat-icon green">💊</div>
+                  <div className="stat-icon green">
+                    <Pill size={11} strokeWidth={2.2} />
+                  </div>
                   <div className="num c-green">4</div>
                   <div className="label">Active Medicines</div>
                 </div>
                 <div className="stat-card purple">
-                  <div className="stat-icon purple">💜</div>
+                  <div className="stat-icon purple">
+                    <HeartPulse size={11} strokeWidth={2.2} />
+                  </div>
                   <div className="num c-purple">8</div>
                   <div className="label">Normal Parameters</div>
                 </div>
                 <div className="stat-card red">
-                  <div className="stat-icon red">⚠️</div>
+                  <div className="stat-icon red">
+                    <AlertTriangle size={11} strokeWidth={2.2} />
+                  </div>
                   <div className="num c-red">2</div>
                   <div className="label">Need Attention</div>
                 </div>
@@ -179,22 +237,30 @@ function Home() {
 
               <div className="action-grid">
                 <div className="action-card">
-                  <div className="icon blue">⬆️</div>
+                  <div className="icon blue">
+                    <Upload size={12} strokeWidth={2.2} />
+                  </div>
                   <div className="label">Upload Report</div>
                   <div className="sub">Add your medical documents</div>
                 </div>
                 <div className="action-card">
-                  <div className="icon cyan">🔍</div>
+                  <div className="icon cyan">
+                    <ScanLine size={12} strokeWidth={2.2} />
+                  </div>
                   <div className="label">Scan Prescription</div>
                   <div className="sub">Digitize with AI</div>
                 </div>
                 <div className="action-card">
-                  <div className="icon green">🧪</div>
+                  <div className="icon green">
+                    <FlaskConical size={12} strokeWidth={2.2} />
+                  </div>
                   <div className="label">Find Alternatives</div>
                   <div className="sub">Explore generic options</div>
                 </div>
                 <div className="action-card">
-                  <div className="icon purple">📊</div>
+                  <div className="icon purple">
+                    <BarChart3 size={12} strokeWidth={2.2} />
+                  </div>
                   <div className="label">Get Insights</div>
                   <div className="sub">Understand your reports</div>
                 </div>
@@ -204,7 +270,7 @@ function Home() {
             {/* Right */}
             <div className="right-col">
               <div className="topline">
-                🔔
+                <Bell size={14} strokeWidth={2} />
                 <div className="user-chip">
                   <span className="avatar-dot"></span> Nandani ▾
                 </div>
@@ -215,28 +281,36 @@ function Home() {
                   Recent Activity <span>View All</span>
                 </div>
                 <div className="activity-item">
-                  <span className="icon">📄</span>
+                  <span className="icon">
+                    <FileText size={13} strokeWidth={2.2} />
+                  </span>
                   <div>
                     <div className="title">Blood Test Report</div>
                     <div className="sub">Added • 2 days ago</div>
                   </div>
                 </div>
                 <div className="activity-item">
-                  <span className="icon">💊</span>
+                  <span className="icon">
+                    <Pill size={13} strokeWidth={2.2} />
+                  </span>
                   <div>
                     <div className="title">Medicine Added</div>
                     <div className="sub">Crocin 500 mg • 3 days ago</div>
                   </div>
                 </div>
                 <div className="activity-item">
-                  <span className="icon">🩺</span>
+                  <span className="icon">
+                    <Stethoscope size={13} strokeWidth={2.2} />
+                  </span>
                   <div>
                     <div className="title">Doctor Consultation</div>
                     <div className="sub">Notes added • 5 days ago</div>
                   </div>
                 </div>
                 <div className="activity-item">
-                  <span className="icon">📄</span>
+                  <span className="icon">
+                    <FileText size={13} strokeWidth={2.2} />
+                  </span>
                   <div>
                     <div className="title">X-Ray Report</div>
                     <div className="sub">Added • 1 week ago</div>
@@ -245,7 +319,9 @@ function Home() {
               </div>
 
               <div className="insight-card">
-                <div className="insight-head">✦ Arovia AI Insight</div>
+                <div className="insight-head">
+                  <Sparkles size={12} strokeWidth={2.2} /> Arovia AI Insight
+                </div>
                 <p className="insight-text">
                   Your last hemoglobin level is slightly below the normal range.
                   Consider discussing this with your healthcare professional.
@@ -254,7 +330,7 @@ function Home() {
               </div>
 
               <div className="secure-card">
-                🛡️
+                <ShieldCheck size={18} strokeWidth={2} />
                 <div>
                   <div className="title">Your Health Data</div>
                   <div className="sub">Protected & Encrypted</div>
@@ -267,9 +343,15 @@ function Home() {
 
       <div className="trustbar">
         <div className="trustbar-inner">
-          <div className="item">📄 Organized Records</div>
-          <div className="item">✦ AI-Assisted</div>
-          <div className="item">✓ Human Verified</div>
+          <div className="item">
+            <FileText size={14} strokeWidth={2} /> Organized Records
+          </div>
+          <div className="item">
+            <Sparkles size={14} strokeWidth={2} /> AI-Assisted
+          </div>
+          <div className="item">
+            <CircleCheck size={14} strokeWidth={2} /> Human Verified
+          </div>
         </div>
       </div>
 
@@ -435,10 +517,14 @@ function Home() {
           <div className="ai-card">
             <div className="ai-card-head">
               <div>
-                <div className="name">✦ AROVIA AI</div>
+                <div className="name">
+                  <Sparkles size={13} strokeWidth={2.2} /> AROVIA AI
+                </div>
                 <div className="sub">Lab Report Analysis</div>
               </div>
-              <div className="ai-badge">⚡ AI-Powered Insight</div>
+              <div className="ai-badge">
+                <Zap size={11} strokeWidth={2.2} /> AI-Powered Insight
+              </div>
             </div>
 
             <div className="ai-metric-label">Hemoglobin</div>
@@ -453,7 +539,9 @@ function Home() {
               <span>16</span>
             </div>
 
-            <div className="ai-flag">🔻 Below reference range</div>
+            <div className="ai-flag">
+              <TrendingDown size={12} strokeWidth={2.2} /> Below reference range
+            </div>
 
             <div className="ai-explain-title">What does this mean?</div>
             <p className="ai-explain-text">
@@ -462,7 +550,8 @@ function Home() {
               should be discussed with a healthcare professional.
             </p>
             <div className="ai-source">
-              📄 Source: Complete Blood Count Report
+              <FileText size={12} strokeWidth={2} /> Source: Complete Blood
+              Count Report
             </div>
 
             <div className="ai-bottom-row">
@@ -475,12 +564,13 @@ function Home() {
                   <div className="ai-confidence-fill"></div>
                 </div>
                 <div className="ai-confidence-note">
-                  ✓ Information extracted successfully
+                  <CircleCheck size={11} strokeWidth={2.2} /> Information
+                  extracted successfully
                 </div>
               </div>
 
               <div className="ai-warning">
-                <span>⚠️</span>
+                <AlertTriangle size={15} strokeWidth={2} />
                 <div>
                   <div className="ai-warning-title">Medicine name unclear</div>
                   <div className="ai-warning-text">
@@ -530,7 +620,9 @@ function Home() {
 
           <div className="medicine-right">
             <div className="medicine-card">
-              <div className="medicine-card-head">⚖️ Medicine Options</div>
+              <div className="medicine-card-head">
+                <Scale size={13} strokeWidth={2.2} /> Medicine Options
+              </div>
               <div className="medicine-card-sub">
                 Compare prescribed and potential generic options
               </div>
@@ -543,13 +635,16 @@ function Home() {
                   <div className="medicine-name">Brand X</div>
                   <div className="medicine-dose">500 mg Tablet</div>
                   <div className="medicine-ingredient-row">
-                    🧪 Active Ingredient
+                    <FlaskConical size={10} strokeWidth={2.2} /> Active
+                    Ingredient
                   </div>
                   <div className="medicine-ingredient-value">Paracetamol</div>
                   <div className="medicine-price-row">
                     <span className="medicine-price">₹120</span>
                     <span className="medicine-price-unit">per strip</span>
-                    <span className="medicine-tablet-count">💊 10 tablets</span>
+                    <span className="medicine-tablet-count">
+                      <Pill size={10} strokeWidth={2.2} /> 10 tablets
+                    </span>
                   </div>
                 </div>
                 <div className="medicine-vs">vs</div>
@@ -560,32 +655,42 @@ function Home() {
                   <div className="medicine-name">Generic X</div>
                   <div className="medicine-dose">500 mg Tablet</div>
                   <div className="medicine-ingredient-row">
-                    🧪 Active Ingredient
+                    <FlaskConical size={10} strokeWidth={2.2} /> Active
+                    Ingredient
                   </div>
                   <div className="medicine-ingredient-value">Paracetamol</div>
                   <div className="medicine-price-row">
                     <span className="medicine-price">₹35</span>
                     <span className="medicine-price-unit">per strip</span>
-                    <span className="medicine-tablet-count">💊 10 tablets</span>
+                    <span className="medicine-tablet-count">
+                      <Pill size={10} strokeWidth={2.2} /> 10 tablets
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div className="medicine-savings">
-                🪙
+                <Coins size={18} strokeWidth={2} style={{ color: "#16a34a" }} />
                 <div>
                   <div className="amount">Potential saving: ₹85</div>
                   <div className="pct">(71%)</div>
                 </div>
               </div>
               <div className="medicine-disclaimer">
-                🛡️ Generic alternatives are informational and should be
-                confirmed with a doctor or pharmacist before substitution.
+                <ShieldCheck
+                  size={12}
+                  strokeWidth={2}
+                  style={{ verticalAlign: "-2px", marginRight: 3 }}
+                />
+                Generic alternatives are informational and should be confirmed
+                with a doctor or pharmacist before substitution.
               </div>
             </div>
 
             <div className="note-card">
-              <div className="note-card-title">✅ Please note</div>
+              <div className="note-card-title">
+                <CircleCheck size={13} strokeWidth={2.2} /> Please note
+              </div>
               <div className="note-card-text">
                 Generic alternatives are informational and should be confirmed
                 with a doctor or pharmacist before substitution.
@@ -627,7 +732,7 @@ function Home() {
             <div className="footer-social">
               <span>f</span>
               <span>𝕏</span>
-              <span>📷</span>
+              <span>ig</span>
               <span>in</span>
             </div>
           </div>

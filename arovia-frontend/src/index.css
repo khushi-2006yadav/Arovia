@@ -8,10 +8,35 @@
   box-sizing: border-box;
 }
 
+/* =========================================================
+   GLASSMORPHISM DESIGN TOKENS
+   ========================================================= */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.5);
+  --glass-bg-strong: rgba(255, 255, 255, 0.68);
+  --glass-bg-soft: rgba(255, 255, 255, 0.38);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-shadow: 0 8px 32px rgba(15, 42, 74, 0.14), 0 2px 8px rgba(15, 42, 74, 0.06);
+  --glass-shadow-hover: 0 16px 44px rgba(15, 42, 74, 0.18), 0 4px 12px rgba(15, 42, 74, 0.08);
+  --glass-blur: blur(18px);
+  --glass-blur-lg: blur(28px);
+}
+
+html {
+  background: #eef2f7;
+}
+
 body {
   font-family: "Quicksand", sans-serif;
-  background: #eef2f7;
   color: #1e293b;
+  min-height: 100vh;
+  background:
+    radial-gradient(720px circle at 8% 8%, rgba(125, 211, 252, 0.35), transparent 60%),
+    radial-gradient(680px circle at 92% 18%, rgba(167, 139, 250, 0.28), transparent 60%),
+    radial-gradient(760px circle at 20% 92%, rgba(244, 114, 182, 0.16), transparent 55%),
+    radial-gradient(820px circle at 88% 96%, rgba(56, 189, 248, 0.22), transparent 55%),
+    linear-gradient(180deg, #eef4fb 0%, #eaf1fb 40%, #f1eefb 100%);
+  background-attachment: fixed;
 }
 
 
@@ -40,9 +65,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
   padding: 12px 24px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: var(--glass-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 40;
 }
 
 .brand {
@@ -117,34 +148,47 @@ body {
 }
 
 .btn-login {
-  border: 1px solid #cbd5e1;
-  background: transparent;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-soft);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   padding: 7px 18px;
   border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
   color: #334155;
   cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 .btn-login:hover {
   border-color: #38bdf8;
   color: #0ea5e9;
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
 }
 
 .btn-primary {
-  border: none;
-  background: #1c5fa8;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0) 45%),
+    linear-gradient(135deg, #2f7fe0 0%, #1c5fa8 100%);
   padding: 8px 20px;
   border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
   color: #fff;
   cursor: pointer;
+  box-shadow: 0 6px 16px rgba(28, 95, 168, 0.35), inset 0 1px 0 rgba(255,255,255,0.4);
+  transition: all 0.25s ease;
 }
 
 .btn-primary:hover {
-  background: #164b87;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0) 45%),
+    linear-gradient(135deg, #3b8ded 0%, #164b87 100%);
+  box-shadow: 0 8px 22px rgba(28, 95, 168, 0.42), inset 0 1px 0 rgba(255,255,255,0.45);
+  transform: translateY(-1px);
 }
 
 
@@ -162,7 +206,10 @@ body {
 
 .eyebrow {
   display: inline-block;
-  background: rgba(186, 230, 253, 0.5);
+  background: rgba(186, 230, 253, 0.4);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   color: #0b2a4a;
   font-size: 15px;
   font-weight: 700;
@@ -170,6 +217,7 @@ body {
   padding: 12px 20px;
   border-radius: 12px;
   margin-bottom: 24px;
+  box-shadow: var(--glass-shadow);
 }
 
 h1 {
@@ -200,29 +248,40 @@ h1 .accent {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #1c5fa8;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0) 45%),
+    linear-gradient(135deg, #2f7fe0 0%, #1c5fa8 100%);
   color: #fff;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   padding: 14px 26px;
-  border-radius: 8px;
+  border-radius: 999px;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
   cursor: pointer;
+  box-shadow: 0 10px 24px rgba(28, 95, 168, 0.32), inset 0 1px 0 rgba(255,255,255,0.4);
+  transition: all 0.25s ease;
 }
 
 .btn-cta:hover {
-  background: #164b87;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0) 45%),
+    linear-gradient(135deg, #3b8ded 0%, #164b87 100%);
+  box-shadow: 0 14px 30px rgba(28, 95, 168, 0.4), inset 0 1px 0 rgba(255,255,255,0.45);
+  transform: translateY(-2px);
 }
 
 
 /* ---------- Dashboard preview card ---------- */
 
 .preview-card {
-  background: #fff;
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur-lg);
+  -webkit-backdrop-filter: var(--glass-blur-lg);
+  border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 16px;
-  box-shadow: 0 20px 40px rgba(15, 42, 74, 0.12);
+  box-shadow: var(--glass-shadow);
 }
 
 .preview-inner {
@@ -238,10 +297,13 @@ h1 .accent {
 /* ---------- Sidebar ---------- */
 
 .side-panel {
-  background: #fff;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 10px;
   padding: 12px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: var(--glass-shadow);
 }
 
 .side-brand {
@@ -292,12 +354,15 @@ h1 .accent {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #fff;
+  background: var(--glass-bg-soft);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 8px 12px;
   font-size: 10px;
   color: #94a3b8;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: var(--glass-shadow);
 }
 
 .greeting .title {
@@ -318,11 +383,14 @@ h1 .accent {
 }
 
 .stat-card {
-  background: #fff;
+  background: var(--glass-bg-soft);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 8px;
   text-align: center;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: var(--glass-shadow);
 }
 
 .stat-card .num {
@@ -356,10 +424,13 @@ h1 .accent {
 /* ---------- Chart ---------- */
 
 .chart-card {
-  background: #fff;
+  background: var(--glass-bg-soft);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 10px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: var(--glass-shadow);
 }
 
 .chart-head {
@@ -407,7 +478,10 @@ h1 .accent {
 }
 
 .action-card {
-  background: #fff;
+  background: var(--glass-bg-soft);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 8px;
   text-align: center;
@@ -451,7 +525,10 @@ h1 .accent {
   display: flex;
   align-items: center;
   gap: 5px;
-  background: #fff;
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 999px;
   padding: 4px 10px;
   font-size: 9px;
@@ -469,7 +546,10 @@ h1 .accent {
 
 .activity-card,
 .insight-card {
-  background: #fff;
+  background: var(--glass-bg-soft);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.04);
@@ -750,7 +830,10 @@ h1 .accent {
 /* ---------- Timeline card ---------- */
 
 .timeline-card {
-  background: #fff;
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 12px 30px rgba(15,42,74,0.08);
@@ -885,7 +968,10 @@ h1 .accent {
 /* ---------- AI insight card ---------- */
 
 .ai-card {
-  background: #fff;
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 12px 30px rgba(15,42,74,0.08);
@@ -1071,7 +1157,10 @@ h1 .accent {
 
 .medicine-card {
   flex: 1;
-  background: #fff;
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 18px;
   box-shadow: 0 12px 30px rgba(15,42,74,0.08);
@@ -1224,18 +1313,26 @@ h1 .accent {
 }
 
 .cta-btn {
-  background: #1c5fa8;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0) 45%),
+    linear-gradient(135deg, #2f7fe0 0%, #1c5fa8 100%);
   color: #fff;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   padding: 15px 30px;
-  border-radius: 8px;
+  border-radius: 999px;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 10px 24px rgba(28, 95, 168, 0.32), inset 0 1px 0 rgba(255,255,255,0.4);
+  transition: all 0.25s ease;
 }
 
 .cta-btn:hover {
-  background: #164b87;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0) 45%),
+    linear-gradient(135deg, #3b8ded 0%, #164b87 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(28, 95, 168, 0.4), inset 0 1px 0 rgba(255,255,255,0.45);
 }
 
 
@@ -1379,6 +1476,9 @@ h1 .accent {
 }
 
 .ai-confidence-note {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-size: 10px;
   color: #16a34a;
   font-weight: 600;
@@ -1402,6 +1502,9 @@ h1 .accent {
 }
 
 .medicine-ingredient-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-size: 10px;
   color: #64748b;
   margin-bottom: 2px;
@@ -1427,12 +1530,17 @@ h1 .accent {
 }
 
 .medicine-tablet-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
   font-size: 9px;
   color: #94a3b8;
   margin-left: auto;
 }
 
 .medicine-disclaimer {
+  display: flex;
+  align-items: flex-start;
   font-size: 9.5px;
   color: #94a3b8;
   line-height: 1.5;
@@ -1471,18 +1579,22 @@ h1 .accent {
 
 .stat-icon.blue {
   background: #dbeafe;
+  color: #0284c7;
 }
 
 .stat-icon.green {
   background: #dcfce7;
+  color: #059669;
 }
 
 .stat-icon.purple {
   background: #ede9fe;
+  color: #7c3aed;
 }
 
 .stat-icon.red {
   background: #fee2e2;
+  color: #f43f5e;
 }
 
 

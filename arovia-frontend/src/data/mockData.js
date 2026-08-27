@@ -113,6 +113,23 @@ export const healthTrends = {
   },
 };
 
+// Reference readings for a typical healthy adult — used on the
+// "Comparison to Healthy Person" page, alongside the same factors
+// tracked in healthTrends above.
+export const healthyPerson = {
+  Hemoglobin: { value: 14.0, note: "Mid-range for a healthy adult" },
+  "Blood Sugar (Fasting)": {
+    value: 85,
+    note: "Well within normal fasting range",
+  },
+  "Blood Pressure (Systolic)": {
+    value: 112,
+    note: "Optimal, low cardiovascular risk",
+  },
+  BMI: { value: 21.5, note: "Middle of the healthy weight range" },
+  Cholesterol: { value: 165, note: "Comfortably below the risk threshold" },
+};
+
 export const quickActions = [
   {
     id: "upload",

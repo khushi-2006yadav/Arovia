@@ -1,4 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
+import {
+  Mail,
+  Lock,
+  Eye,
+  HeartPulse,
+  Folder,
+  Sparkles,
+  ShieldCheck,
+} from "lucide-react";
 import logo from "../assets/logo1.png";
 import "./login.css";
 
@@ -40,7 +49,9 @@ function Login() {
           <form onSubmit={handleLogin}>
             <label className="login-label">Email Address</label>
             <div className="login-input-wrap">
-              <span className="login-input-icon">✉️</span>
+              <span className="login-input-icon">
+                <Mail size={14} strokeWidth={2} />
+              </span>
               <input
                 type="email"
                 placeholder="you@example.com"
@@ -50,13 +61,17 @@ function Login() {
 
             <label className="login-label">Password</label>
             <div className="login-input-wrap">
-              <span className="login-input-icon">🔒</span>
+              <span className="login-input-icon">
+                <Lock size={14} strokeWidth={2} />
+              </span>
               <input
                 type="password"
                 placeholder="••••••••"
                 className="login-input"
               />
-              <span className="login-eye-icon">👁️</span>
+              <span className="login-eye-icon">
+                <Eye size={14} strokeWidth={2} />
+              </span>
             </div>
 
             <div className="login-forgot">Forgot Password?</div>
@@ -93,7 +108,9 @@ function Login() {
           <div className="login-side-plus">+</div>
 
           <div className="login-side-content">
-            <div className="login-side-icon">💙</div>
+            <div className="login-side-icon">
+              <HeartPulse size={22} strokeWidth={2.2} />
+            </div>
             <div className="login-side-brand">AROVIA</div>
             <div className="login-side-tag">Understand. Track. Care.</div>
 
@@ -111,14 +128,18 @@ function Login() {
 
             <div className="login-feature-row">
               <div className="login-feature">
-                <div className="login-feature-icon teal">📁</div>
+                <div className="login-feature-icon teal">
+                  <Folder size={13} strokeWidth={2.2} />
+                </div>
                 <div className="login-feature-title">Organized Records</div>
                 <div className="login-feature-sub">
                   All your medical documents in one secure place.
                 </div>
               </div>
               <div className="login-feature">
-                <div className="login-feature-icon green">✦</div>
+                <div className="login-feature-icon green">
+                  <Sparkles size={13} strokeWidth={2.2} />
+                </div>
                 <div className="login-feature-title">AI-Assisted Insights</div>
                 <div className="login-feature-sub">
                   Get simple explanations and helpful insights from complex
@@ -126,7 +147,9 @@ function Login() {
                 </div>
               </div>
               <div className="login-feature">
-                <div className="login-feature-icon indigo">🛡️</div>
+                <div className="login-feature-icon indigo">
+                  <ShieldCheck size={13} strokeWidth={2.2} />
+                </div>
                 <div className="login-feature-title">User Controlled</div>
                 <div className="login-feature-sub">
                   Your data stays private and under your control.

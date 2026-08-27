@@ -213,7 +213,17 @@ function Medicines() {
                         disabled={m.switchedToGeneric}
                       >
                         {m.switchedToGeneric ? (
-                          "Switched ✓"
+                          <>
+                            <CircleCheck
+                              size={14}
+                              style={{
+                                display: "inline",
+                                verticalAlign: "-2px",
+                                marginRight: 6,
+                              }}
+                            />
+                            Switched
+                          </>
                         ) : (
                           <>
                             <RefreshCcw
