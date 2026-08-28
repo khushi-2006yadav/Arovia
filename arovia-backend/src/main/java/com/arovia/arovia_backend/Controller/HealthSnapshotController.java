@@ -1,5 +1,6 @@
 package com.arovia.arovia_backend.Controller;
 
+import com.arovia.arovia_backend.Entity.HealthSnapshot;
 import com.arovia.arovia_backend.Service.HealthSnapshotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,12 @@ public class HealthSnapshotController {
     public void curedDisease(@PathVariable String userId, @RequestBody String diseaseName)
     {
            healthSnapshotService.removeDiseases(userId, diseaseName);
+    }
+
+    @GetMapping("/fetchSnapshot/{userId}")
+    public HealthSnapshot fetchSnapshot(@PathVariable String userId)
+    {
+        return healthSnapshotService.fetchHealthsnapshot(userId);
     }
 
 }

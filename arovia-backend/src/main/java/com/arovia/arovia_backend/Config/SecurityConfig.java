@@ -50,8 +50,13 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html",
                                 "/api/signup/**",
+                                "/api/oauth-signin",
+                                "/api/oauth-signup",
                                 "/api/signin/**",
                                 "/oauth2/**",
+                                "/swagger-resources/**",
+                                "/webjars/**",
+                                "/error",
                                 "/login/**"
                         ).permitAll()
                         .anyRequest().authenticated()
@@ -88,7 +93,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
+                List.of("http://localhost:5173", "http://localhost:8080")
         );
 
         configuration.setAllowedMethods(

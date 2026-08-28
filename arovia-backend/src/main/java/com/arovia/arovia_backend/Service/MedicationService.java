@@ -8,8 +8,10 @@ import com.arovia.arovia_backend.Enum.MedicationStatus;
 import com.arovia.arovia_backend.Repository.MedicationRepository;
 import com.arovia.arovia_backend.Repository.MedicineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class MedicationService {
     private MedicationRepository medicationRepository;
     @Autowired
     private MedicineRepository medicineRepository;
+    @Autowired
+    private RedisTemplate<String, Medicine> medicineRedisTemplate;
 
     public void updateMedication(String userId,List<MedicationInfoDto> medicationDtos,LocalDate recordDate) {
 
@@ -68,21 +72,31 @@ public class MedicationService {
         medicationRepository.save(medication);
     }
 
-    public Medicine findMedicine(String medicineName)
-    {
-        // Pehle cached data check karenge
+    public Medicine findMedicine(String medicineName) {
+
+        String key = "medicine:" + medicineName.trim().toLowerCase();
+
+        Medicine cachedMedicine = medicineRedisTemplate.opsForValue().get(key);
+
+        if (cachedMedicine != null)
+            return cachedMedicine;
+
         Medicine medicine = medicineRepository
                 .findByMedicineNameIgnoreCase(medicineName)
                 .orElseGet(() -> {
-                                Medicine newMedicine = new Medicine();
 
-                                newMedicine.setMedicineName(medicineName);
-                                newMedicine.setUses("Unknown");
-                                newMedicine.setSideEffects("Unknown");
-                                newMedicine.setActiveSalts("Unknown");
-                                return newMedicine;
-                        }
-                );
+                    Medicine newMedicine = new Medicine();
+
+                    newMedicine.setMedicineName(medicineName);
+                    newMedicine.setUses("Unknown");
+                    newMedicine.setSideEffects("Unknown");
+                    newMedicine.setActiveSalts("Unknown");
+
+                    return newMedicine;
+                });
+
+        medicineRedisTemplate.opsForValue().set(key, medicine, Duration.ofDays(7));
+
         return medicine;
     }
 
