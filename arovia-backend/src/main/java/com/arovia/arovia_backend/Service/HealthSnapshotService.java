@@ -3,10 +3,12 @@ package com.arovia.arovia_backend.Service;
 import com.arovia.arovia_backend.Entity.*;
 import com.arovia.arovia_backend.Repository.HealthSnapshotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Service
 public class HealthSnapshotService {
     @Autowired
     private HealthSnapshotRepository healthSnapshotRepository;
@@ -26,8 +28,7 @@ public class HealthSnapshotService {
 
             double heightInMeters = user.getHeight() / 100.0;
 
-            double bmi = user.getWeight()
-                    / (heightInMeters * heightInMeters);
+            double bmi = user.getWeight()/ (heightInMeters * heightInMeters);
 
             snapshot.setBmi(bmi);
         }
@@ -63,9 +64,9 @@ public class HealthSnapshotService {
         Set<String> activeDiseases=healthSnapshot.getActiveDiseases();
 
         activeDiseases.remove(diseaseName.toLowerCase());
+        healthSnapshot.setActiveDiseases(activeDiseases);
         healthSnapshot.setUpdatedAt(LocalDateTime.now());
         healthSnapshotRepository.save(healthSnapshot);
-
     }
 
     public void updateTrends(String userId, List<TestResult> list)
@@ -84,5 +85,10 @@ public class HealthSnapshotService {
         }
         healthSnapshot.setUpdatedAt(LocalDateTime.now());
         healthSnapshotRepository.save(healthSnapshot);
+    }
+
+    public HealthSnapshot fetchHealthsnapshot(String userId)
+    {
+        return   healthSnapshotRepository.findByUserId(userId);
     }
 }

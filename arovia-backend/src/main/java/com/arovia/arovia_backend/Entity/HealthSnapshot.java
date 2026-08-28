@@ -28,7 +28,8 @@ public class HealthSnapshot {
 
     private Set<String> activeDiseases= new HashSet<>();
 
-    private Map<String, List<Stamp>> trends= new HashMap<>();
+    private Map<String, List<Stamp>> trends= new HashMap<>(); // such as haemoglobin : [stamp1, stamp2]  list contains
+    // value recorded on date
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
