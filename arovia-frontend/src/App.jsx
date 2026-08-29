@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import OAuthSuccess from "./pages/OAuthSuccess";
+import CompleteProfile from "./pages/CompleteProfile";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
 import Overview from "./pages/dashboard/Overview";
 import Records from "./pages/dashboard/Records";
@@ -24,17 +25,18 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/oauth-success" element={<OAuthSuccess />} />
+        <Route path="/complete-profile" element={<CompleteProfile />} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Overview />} />
 
-          {/* Sidebar items */}
+          {/* Sidebar ke items*/}
           <Route path="timeline" element={<Timeline />} />
           <Route path="medicines" element={<Medicines />} />
           <Route path="records" element={<Records />} />
           <Route path="settings" element={<Settings />} />
 
-          {/* Dashboard option cards */}
+          {/* Dashboard options*/}
           <Route path="user-details" element={<UserDetails />} />
           <Route path="health-analysis" element={<HealthAnalysis />} />
           <Route path="comparison" element={<Comparison />} />

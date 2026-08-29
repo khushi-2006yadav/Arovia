@@ -40,7 +40,7 @@ function writePersistent(key, data, ttl) {
   try {
     sessionStorage.setItem(storageKey(key), JSON.stringify(entry));
   } catch {
-    // Storage is an optimization. The in-memory cache still works.
+   
   }
 }
 
@@ -54,7 +54,7 @@ export function clearCache(prefix = "") {
       if (key.startsWith(CACHE_PREFIX + prefix)) sessionStorage.removeItem(key);
     });
   } catch {
-    // Ignore storage failures.
+// storage failure ignore krna hai
   }
 }
 

@@ -46,14 +46,11 @@ export function AroviaProvider({ children }) {
   useEffect(() => {
     if (user?.userId) {
       refreshAll().catch(() => {
-        // Individual screens render their own error states.
       });
     } else {
       setSnapshot(null);
       setRecords([]);
     }
-    // Only react to the authenticated user's identity changing.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.userId]);
 
   const signIn = async (payload) => {

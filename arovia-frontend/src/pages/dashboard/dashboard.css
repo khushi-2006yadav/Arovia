@@ -91,12 +91,15 @@
 /* ==================== DASHBOARD SHELL ==================== */
 .dash-shell {
   min-height: 100vh;
-  background-color: var(--bg-app);
+  background-color: #eef2f7;
   background-image:
-    radial-gradient(circle, rgba(18, 38, 34, 0.055) 1px, transparent 1px),
-    radial-gradient(560px circle at 8% 0%, rgba(28, 95, 168, 0.10), transparent 60%),
-    radial-gradient(620px circle at 100% 8%, rgba(30, 110, 140, 0.08), transparent 55%);
-  background-size: 24px 24px, auto, auto;
+    radial-gradient(circle, rgba(18, 38, 34, 0.05) 1px, transparent 1px),
+    radial-gradient(720px circle at 8% 8%, rgba(125, 211, 252, 0.35), transparent 60%),
+    radial-gradient(680px circle at 92% 18%, rgba(167, 139, 250, 0.28), transparent 60%),
+    radial-gradient(760px circle at 20% 92%, rgba(244, 114, 182, 0.16), transparent 55%),
+    radial-gradient(820px circle at 88% 96%, rgba(56, 189, 248, 0.22), transparent 55%),
+    linear-gradient(180deg, #eef4fb 0%, #eaf1fb 40%, #f1eefb 100%);
+  background-size: 24px 24px, auto, auto, auto, auto, auto;
   background-attachment: fixed;
   font-family: var(--font-body);
   color: var(--text-main);

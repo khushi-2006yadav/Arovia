@@ -1,10 +1,3 @@
-// ---------------------------------------------------------------------------
-// Mock data for the logged-in Dashboard section.
-// Swap these out for real API calls once a backend is wired up — every page
-// in src/pages/dashboard/ imports from here, so this is the single place
-// to change when you connect real data.
-// ---------------------------------------------------------------------------
-
 export const currentUser = {
   userId: "USR-20250114",
   name: "User",
@@ -37,9 +30,6 @@ export const chartSeries = {
   points: [11.6, 12.4, 11.4, 12.8, 11.9, 12.4, 11.6, 13.0],
 };
 
-// Mirrors the backend's HealthSnapshot.trends (Map<String, List<Stamp>>) —
-// each factor has its own dated value history, unit, and normal range so
-// the Health Analysis graph can switch between them.
 export const healthTrends = {
   Hemoglobin: {
     unit: "g/dL",
@@ -112,10 +102,6 @@ export const healthTrends = {
     ],
   },
 };
-
-// Reference readings for a typical healthy adult — used on the
-// "Comparison to Healthy Person" page, alongside the same factors
-// tracked in healthTrends above.
 export const healthyPerson = {
   Hemoglobin: { value: 14.0, note: "Mid-range for a healthy adult" },
   "Blood Sugar (Fasting)": {
@@ -183,7 +169,6 @@ export const featuredInsight = {
   text: "Your last hemoglobin level is slightly below the normal range. Consider discussing this with your healthcare professional.",
 };
 
-// ---------------- My Records page ----------------
 export const records = [
   {
     id: 1,
@@ -243,7 +228,6 @@ export const records = [
   },
 ];
 
-// ---------------- Medicines page ----------------
 export const medicines = [
   {
     id: 1,
@@ -351,7 +335,6 @@ export const genericComparison = {
   },
 };
 
-// ---------------- Insights page ----------------
 export const insightsList = [
   {
     id: 1,
@@ -400,7 +383,6 @@ export const insightsList = [
   },
 ];
 
-// ---------------- Health Timeline page ----------------
 export const timelineFull = [
   {
     id: 1,
@@ -452,7 +434,6 @@ export const timelineFull = [
   },
 ];
 
-// ---------------- Emergency Card page ----------------
 export const emergencyInfo = {
   bloodGroup: "O+",
   allergies: ["Penicillin", "Peanuts"],

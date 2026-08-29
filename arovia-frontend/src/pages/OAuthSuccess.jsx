@@ -25,8 +25,12 @@ function OAuthSuccess() {
       try {
         const user = await api.oauthSignin(token);
         if (!cancelled) {
-          setUser(user);
-          navigate("/dashboard", { replace: true });
+          if (!user.bloodGroup) {
+            navigate("/complete-profile", { replace: true, state: { token } });
+          } else {
+            setUser(user);
+            navigate("/dashboard", { replace: true });
+          }
         }
       } catch (err) {
         if (!cancelled) {
