@@ -159,7 +159,7 @@
   color: #334155;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .lp-btn-ghost:hover {
@@ -182,7 +182,7 @@
   cursor: pointer;
   text-decoration: none;
   box-shadow: 0 6px 16px rgba(28, 95, 168, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  transition: all 0.25s ease;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .lp-btn-primary:hover {
@@ -357,23 +357,38 @@
   padding: 18px 24px;
 }
 
-.lp-trustbar-inner {
-  max-width: 1280px;
-  margin: 0 auto;
+.lp-trustbar-viewport {
+  overflow: hidden;
+}
+
+.lp-marque {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: nowrap;
   align-items: center;
-  font-size: 12px;
-  font-weight: 500;
-  color: #64748b;
-  flex-wrap: wrap;
-  gap: 12px;
+  width: max-content;
+}
+
+.lp-marque-set {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 100vw;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0b2a4a;
 }
 
 .lp-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 0 24px;
+}
+
+.lp-marque-icon {
+  color: #2f7fe0;
 }
 
 
@@ -439,10 +454,23 @@
   margin-bottom: 56px;
 }
 
-.lp-feature-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+/* ---------- feature marquee (mirrors .lp-trustbar / .lp-marque) ---------- */
+
+.lp-feature-viewport {
+  overflow: hidden;
+  margin-top: 8px;
+  /* full-bleed: escape .lp-section's max-width:1280px/centered box
+     so this row reaches the true edges of the viewport, same as
+     .lp-trustbar (which achieves it by sitting outside .lp-section
+     entirely instead). */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.lp-feature-track {
+  display: flex;
   gap: 24px;
+  width: max-content;
 }
 
 .lp-feature-card {
@@ -454,6 +482,8 @@
   padding: 24px;
   box-shadow: var(--glass-shadow);
   transition: box-shadow 0.25s ease, transform 0.25s ease;
+  width: clamp(200px, 21vw, 280px);
+  flex-shrink: 0;
 }
 
 .lp-feature-card:hover {
@@ -727,6 +757,30 @@
   color: #0284c7;
 }
 
+/* ---------- Guitar String Divider ---------- */
+.lp-string-container {
+  width: 100%;
+  max-width: 1000px;
+  height: 120px;
+  margin: 10px auto; /* Adjust margin so it spaces perfectly between header and subtext */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+}
+
+.lp-string-container:active {
+  cursor: grabbing;
+}
+
+.lp-string-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
 
 /* ---------- CTA ---------- */
 
@@ -869,7 +923,6 @@
 @media (max-width: 900px) {
   .lp-hero,
   .lp-why-top,
-  .lp-feature-grid,
   .lp-tour-inner,
   .lp-split {
     grid-template-columns: 1fr;
@@ -885,5 +938,14 @@
 
   .lp-hero-chip {
     display: none;
+  }
+
+  .lp-feature-track {
+    gap: 16px;
+  }
+
+  .lp-feature-card {
+    width: clamp(190px, 60vw, 240px);
+    padding: 20px;
   }
 }
