@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import OAuthSuccess from "./pages/OAuthSuccess";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
 import Overview from "./pages/dashboard/Overview";
 import Records from "./pages/dashboard/Records";
@@ -11,13 +13,17 @@ import UserDetails from "./pages/dashboard/UserDetails";
 import HealthAnalysis from "./pages/dashboard/HealthAnalysis";
 import Comparison from "./pages/dashboard/Comparison";
 import Suggestions from "./pages/dashboard/Suggestions";
+import { AroviaProvider } from "./context";
 
 function App() {
   return (
-    <BrowserRouter>
+    <AroviaProvider>
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/oauth-success" element={<OAuthSuccess />} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Overview />} />
@@ -35,7 +41,8 @@ function App() {
           <Route path="suggestions" element={<Suggestions />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AroviaProvider>
   );
 }
 

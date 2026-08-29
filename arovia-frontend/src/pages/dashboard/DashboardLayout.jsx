@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   Menu,
@@ -8,13 +8,12 @@ import {
   Pill,
   Settings as SettingsIcon,
   FileText,
-  Search,
   Bell,
   ChevronDown,
   LogOut,
 } from "lucide-react";
 import logo from "../../assets/logo1.png";
-import { currentUser } from "../../data/mockData";
+import { useArovia } from "../../context";
 import "./dashboard.css";
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, to: "/dashboard" },
@@ -26,7 +25,14 @@ const navItems = [
 
 function DashboardLayout() {
   const navigate = useNavigate();
+  const { user, signOut } = useArovia();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    if (!user) navigate("/login", { replace: true });
+  }, [user, navigate]);
+
+  if (!user) return null;
 
   return (
     <div className="dash-shell dash-shell-drawer">
@@ -49,19 +55,14 @@ function DashboardLayout() {
           </NavLink>
         </div>
 
-        <div className="dash-search">
-          <Search size={16} strokeWidth={2} />
-          <input placeholder="Search reports, medicines, or insights..." />
-        </div>
-
         <div className="dash-topbar-right">
           <button className="dash-bell" aria-label="Notifications">
             <Bell size={18} strokeWidth={2} />
             <span className="dash-bell-dot" />
           </button>
           <div className="dash-user-chip">
-            <span className="dash-avatar">{currentUser.name.charAt(0)}</span>
-            <span>{currentUser.name}</span>
+            <span className="dash-avatar">{(user.name || "U").charAt(0)}</span>
+            <span>{user.name}</span>
             <ChevronDown size={14} strokeWidth={2} />
           </div>
         </div>
@@ -109,7 +110,8 @@ function DashboardLayout() {
           className="dash-logout"
           onClick={() => {
             setSidebarOpen(false);
-            navigate("/login");
+            signOut();
+            navigate("/login", { replace: true });
           }}
         >
           <LogOut size={18} strokeWidth={2} />

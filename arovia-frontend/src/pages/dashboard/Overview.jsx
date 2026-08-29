@@ -1,20 +1,51 @@
 import { useEffect, useRef, useState } from "react";
-import { Sun } from "lucide-react";
-import { currentUser } from "../../data/mockData";
+import { Link } from "react-router-dom";
+import {
+  Sun,
+  ArrowUp,
+  Gauge,
+  ShieldAlert,
+  FileText,
+  Pill,
+  Clock,
+  Settings as SettingsIcon,
+} from "lucide-react";
+import { useArovia } from "../../context";
+import { medicationItems, snapshotTrends } from "../../data/healthUtils";
 import UserDetails from "./UserDetails";
 import HealthAnalysis from "./HealthAnalysis";
 import Comparison from "./Comparison";
 import Suggestions from "./Suggestions";
 
 const sections = [
-  { id: "user-details", label: "User Details", Component: UserDetails },
+  {
+    id: "user-details",
+    label: "User Details",
+    desc: "Profile & vitals",
+    tint: "blue",
+    Component: UserDetails,
+  },
   {
     id: "health-analysis",
     label: "Health Analysis",
+    desc: "Trends over time",
+    tint: "coral",
     Component: HealthAnalysis,
   },
-  { id: "comparison", label: "Comparison", Component: Comparison },
-  { id: "suggestions", label: "Suggestions", Component: Suggestions },
+  {
+    id: "comparison",
+    label: "Comparison",
+    desc: "Vs. healthy range",
+    tint: "purple",
+    Component: Comparison,
+  },
+  {
+    id: "suggestions",
+    label: "Suggestions",
+    desc: "AI recommendations",
+    tint: "amber",
+    Component: Suggestions,
+  },
 ];
 
 const badgeSvgs = {
@@ -58,8 +89,13 @@ const badgeSvgs = {
 };
 
 function Overview() {
+  const { user, snapshot, records } = useArovia();
   const sectionRefs = useRef({});
   const [activeId, setActiveId] = useState(sections[0].id);
+  const activeIndex = Math.max(
+    sections.findIndex((s) => s.id === activeId),
+    0,
+  );
 
   const scrollToSection = (id) => {
     sectionRefs.current[id]?.scrollIntoView({
@@ -67,6 +103,14 @@ function Overview() {
       block: "start",
     });
   };
+
+  const factorSeries = snapshotTrends(snapshot);
+  const activeMedsCount = medicationItems(records).filter((m) => m.status === "active").length;
+  const todayLabel = new Date().toLocaleDateString(undefined, {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
 
   // Scroll-spy: highlight whichever bookmark matches the section currently in view
   useEffect(() => {
@@ -93,12 +137,52 @@ function Overview() {
   return (
     <div className="dash-scroll-shell">
       <div className="dash-scroll-main">
-        <div className="dash-page-head">
-          <h1>
-            Good Morning, {currentUser.name}!{" "}
-            <Sun className="dash-heading-icon" size={32} strokeWidth={2.2} />
-          </h1>
-          <p>Here's your health overview.</p>
+        <div className="ov-header-row">
+          <div className="dash-page-head">
+            <h1>
+              Good Morning, {user?.name || "there"}!{" "}
+              <Sun className="dash-heading-icon" size={32} strokeWidth={2.2} />
+            </h1>
+            <p>Here's your health overview.</p>
+          </div>
+
+          <div className="dash-today-card tint-blue">
+            <div className="dash-today-date">{todayLabel}</div>
+            <div className="dash-today-sub">
+              Profile updated {user?.updatedAt ? new Date(user.updatedAt).toLocaleDateString() : "—"}
+            </div>
+          </div>
+        </div>
+
+        <div className="action-grid ov-quick-actions">
+          <Link to="/dashboard/timeline" className="action-card tint-blue">
+            <div className="icon blue">
+              <Clock size={16} strokeWidth={2.2} />
+            </div>
+            <div className="label">Report Timeline</div>
+            <div className="sub">Your medical journey</div>
+          </Link>
+          <Link to="/dashboard/medicines" className="action-card tint-green">
+            <div className="icon green">
+              <Pill size={16} strokeWidth={2.2} />
+            </div>
+            <div className="label">Medicines</div>
+            <div className="sub">Doses & refills</div>
+          </Link>
+          <Link to="/dashboard/records" className="action-card tint-purple">
+            <div className="icon purple">
+              <FileText size={16} strokeWidth={2.2} />
+            </div>
+            <div className="label">My Records</div>
+            <div className="sub">Reports & scans</div>
+          </Link>
+          <Link to="/dashboard/settings" className="action-card tint-amber">
+            <div className="icon amber">
+              <SettingsIcon size={16} strokeWidth={2.2} />
+            </div>
+            <div className="label">Settings</div>
+            <div className="sub">Profile & alerts</div>
+          </Link>
         </div>
 
         {sections.map(({ id, Component }) => (
@@ -115,21 +199,104 @@ function Overview() {
       </div>
 
       <aside className="dash-bookmarks">
-        <div className="dash-bookmarks-title">Bookmarks</div>
-        <div className="dash-bookmarks-list">
-          {sections.map(({ id, label }) => (
-            <button
-              key={id}
-              className={
-                "dash-bookmark-item" + (activeId === id ? " active" : "")
-              }
-              onClick={() => scrollToSection(id)}
-            >
-              <span className="dash-bookmark-badge">{badgeSvgs[id]}</span>
-              <span>{label}</span>
-            </button>
-          ))}
+        <div className="dash-bookmarks-title">On This Page</div>
+
+        <div className="dash-bookmarks-rail">
+          <div className="dash-bookmarks-rail-track" />
+          <div
+            className="dash-bookmarks-rail-fill"
+            style={{
+              height: `${
+                (activeIndex / Math.max(sections.length - 1, 1)) * 100
+              }%`,
+            }}
+          />
+          <div className="dash-bookmarks-list">
+            {sections.map(({ id, label, desc, tint }, i) => (
+              <button
+                key={id}
+                className={
+                  "dash-bookmark-item" +
+                  ` tint-${tint}` +
+                  (activeId === id ? " active" : "")
+                }
+                onClick={() => scrollToSection(id)}
+              >
+                <span className="dash-bookmark-badge">{badgeSvgs[id]}</span>
+                <span className="dash-bookmark-text">
+                  <span className="dash-bookmark-label">{label}</span>
+                  <span className="dash-bookmark-desc">{desc}</span>
+                </span>
+                <span className="dash-bookmark-index">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
+
+        <div className="dash-bookmarks-divider" />
+
+        <div className="dash-side-title">
+          <Gauge size={13} strokeWidth={2.2} /> Quick Snapshot
+        </div>
+        <div className="dash-snapshot-grid">
+          <div className="dash-snapshot-stat tint-green">
+            <div className="num">
+              {factorSeries.length}
+            </div>
+            <div className="label">Tracked metrics</div>
+          </div>
+          <div className="dash-snapshot-stat tint-blue">
+            <div className="num">{activeMedsCount}</div>
+            <div className="label">Active medicines</div>
+          </div>
+          <div className="dash-snapshot-stat tint-purple">
+            <div className="num">{records.length}</div>
+            <div className="label">Records on file</div>
+          </div>
+        </div>
+
+        <div className="dash-side-links">
+          <Link to="/dashboard/records" className="dash-side-link">
+            <FileText size={13} strokeWidth={2.2} /> View records
+          </Link>
+          <Link to="/dashboard/medicines" className="dash-side-link">
+            <Pill size={13} strokeWidth={2.2} /> View medicines
+          </Link>
+        </div>
+
+        <div className="dash-bookmarks-divider" />
+
+        <div className="dash-side-title">
+          <ShieldAlert size={13} strokeWidth={2.2} /> Emergency Info
+        </div>
+        <div className="dash-side-emg">
+          <div className="dash-side-emg-row">
+            <span className="label">Blood Group</span>
+            <span className="value">{user?.bloodGroup || "—"}</span>
+          </div>
+          <div className="dash-side-emg-row wrap">
+            <span className="label">Allergies</span>
+          </div>
+          <div className="dash-side-emg-chips">
+            {(user?.pastChronicDiseases || []).map((a) => (
+              <span className="ud-chip red" key={a}>
+                {a}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {activeId !== sections[0].id && (
+          <button
+            className="dash-bookmarks-top"
+            onClick={() => scrollToSection(sections[0].id)}
+          >
+            <ArrowUp size={13} strokeWidth={2.4} />
+            Back to top
+          </button>
+        )}
       </aside>
     </div>
   );
