@@ -35,6 +35,10 @@ public class MedicineController {
                 .location(URI.create(googleUrl))
                 .build();
     }
-
+    @GetMapping("/findMedicine/{medicineName}")
+    public Medicine findMedicine(@PathVariable String medicineName)
+    {
+        return medicationService.findMedicine(medicineName);
+    }
 
 }

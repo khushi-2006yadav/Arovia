@@ -142,6 +142,7 @@ public class UserService {
         patient.setPastChronicDiseases(oAuthDto.getPastChronicDiseases());
         patient.setLocation(oAuthDto.getLocation());
         patientRepository.save(patient);
+        healthSnapshotService.createSnapshot(patient);
 
         UserResponseDto response = new UserResponseDto();
 

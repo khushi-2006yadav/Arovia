@@ -6,6 +6,6 @@ import java.time.LocalDate;
 
 @Data
 public class Stamp {
-    private double value;
+    private String value;
     private LocalDate date;
 }
