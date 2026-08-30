@@ -63,7 +63,7 @@ public class MedicationService {
             history.setSubstitute("");
 
             medication.getMedications()
-                    .computeIfAbsent(medicine,key -> new ArrayList<>())
+                    .computeIfAbsent(medicine.getMedicineName(),key -> new ArrayList<>())
                     .add(history);
         }
 
@@ -82,7 +82,7 @@ public class MedicationService {
             return cachedMedicine;
 
         Medicine medicine = medicineRepository
-                .findByMedicineNameIgnoreCase(medicineName)
+                .findFirstByMedicineNameContainingIgnoreCase(medicineName)
                 .orElseGet(() -> {
 
                     Medicine newMedicine = new Medicine();
@@ -113,9 +113,9 @@ public class MedicationService {
                 });  //Else ka case banega hi nahi
 
 
-         List<MedicationHistory> list=medication.getMedications().get(medicine);
+         List<MedicationHistory> list=medication.getMedications().get(medicine.getMedicineName());
 
-         MedicationHistory medicationHistory=list.get(list.size()-1);
+         MedicationHistory medicationHistory=list.getLast();
          medicationHistory.setSubstitute(medicationHistory.getSubstitute()+" "+substituteName);
     }
 }

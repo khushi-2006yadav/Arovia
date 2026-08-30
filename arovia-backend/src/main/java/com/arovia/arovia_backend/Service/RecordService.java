@@ -43,25 +43,27 @@ public class RecordService {
             healthSnapshotService.updateTrends( userId, medicalRecordDto.getTestResults());
         List<MedicationInfo> medications = new ArrayList<>();
 
-        for (MedicationInfoDto medicationDto : medicalRecordDto.getMedications()) {
+        if(medicalRecordDto.getMedications()!=null) {
+            for (MedicationInfoDto medicationDto : medicalRecordDto.getMedications()) {
 
-            Medicine medicine = medicationService.findMedicine(medicationDto.getMedicineName());
+                Medicine medicine = medicationService.findMedicine(medicationDto.getMedicineName());
 
-            MedicationInfo medicationInfo = new MedicationInfo();
+                MedicationInfo medicationInfo = new MedicationInfo();
 
-            medicationInfo.setMedicine(medicine);
-            medicationInfo.setDosage(medicationDto.getDosage());
-            medicationInfo.setFrequency(medicationDto.getFrequency());
-            medicationInfo.setRoute(medicationDto.getRoute());
-            medicationInfo.setDuration(medicationDto.getDuration());
-            medicationInfo.setInstructions(medicationDto.getInstructions());
-            medicationInfo.setConfidence(medicationDto.getConfidence());
+                medicationInfo.setMedicine(medicine);
+                medicationInfo.setDosage(medicationDto.getDosage());
+                medicationInfo.setFrequency(medicationDto.getFrequency());
+                medicationInfo.setRoute(medicationDto.getRoute());
+                medicationInfo.setDuration(medicationDto.getDuration());
+                medicationInfo.setInstructions(medicationDto.getInstructions());
+                medicationInfo.setConfidence(medicationDto.getConfidence());
 
-            medications.add(medicationInfo);
+                medications.add(medicationInfo);
+            }
+
+            medicationService.updateMedication(userId, medicalRecordDto.getMedications(), medicalRecordDto.getRecordDate());
+            medicalRecord.setMedications(medications);
         }
-
-        medicationService.updateMedication(userId, medicalRecordDto.getMedications(), medicalRecordDto.getRecordDate());
-        medicalRecord.setMedications(medications);
 
         medicalRecord.setDoctor(medicalRecordDto.getDoctor());
         medicalRecord.setObservations(medicalRecordDto.getObservations());

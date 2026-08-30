@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface MedicineRepository extends MongoRepository<Medicine, String> {
-    Optional<Medicine> findByMedicineNameIgnoreCase(String name);
+    Optional<Medicine> findFirstByMedicineNameContainingIgnoreCase(String name);
 }

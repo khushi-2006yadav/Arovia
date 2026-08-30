@@ -16,7 +16,7 @@ public class Medication {
     private String medicationId;
 
     private String userId;
-    private Map<Medicine, List<MedicationHistory>> medications; // Medicine: medicationHistory
+    private Map<String, List<MedicationHistory>> medications; // MedicineName: medicationHistory
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

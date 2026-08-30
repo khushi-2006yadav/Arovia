@@ -15,7 +15,7 @@ public class TestResult {
     private String category;
     private String testName;
 
-    private Double value;
+    private String value; // String bana dena hoga
 
     private String unit;
 

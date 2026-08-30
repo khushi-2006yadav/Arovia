@@ -46,14 +46,14 @@ public class HealthSnapshotService {
         HealthSnapshot healthSnapshot=healthSnapshotRepository.findByUserId(userId);
 
         Set<String> activeDiseases=healthSnapshot.getActiveDiseases();
-
-        for(Diagnosis dia: list)
-        {
-            activeDiseases.add(dia.getName().toLowerCase());
+        if(activeDiseases!=null) {
+            for (Diagnosis dia : list) {
+                activeDiseases.add(dia.getName().toLowerCase());
+            }
+            healthSnapshot.setActiveDiseases(activeDiseases);
+            healthSnapshot.setUpdatedAt(LocalDateTime.now());
+            healthSnapshotRepository.save(healthSnapshot);
         }
-        healthSnapshot.setActiveDiseases(activeDiseases);
-        healthSnapshot.setUpdatedAt(LocalDateTime.now());
-        healthSnapshotRepository.save(healthSnapshot);
 
     }
 
