@@ -47,7 +47,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         String token = jwtService.generateToken(email);
 
-        String targetUrl = "https://khushi-2006yadav.github.io/Arovia/oauth-success?token=" + token; // Yaha se frontend me token ko extract karns hoga
+        String targetUrl = "https://aro-via.netlify.app/oauth-success?token=" + token; // Yaha se frontend me token ko extract karns hoga
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
     }
 }
