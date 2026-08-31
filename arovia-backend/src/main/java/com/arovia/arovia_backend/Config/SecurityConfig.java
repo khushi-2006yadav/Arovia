@@ -93,7 +93,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173", "http://localhost:8080","https://khushi-2006yadav.github.io/Arovia/")
+                List.of("http://localhost:5173", "http://localhost:8080","https://khushi-2006yadav.github.io/Arovia/","https://khushi-2006yadav.github.io")
         );
 
         configuration.setAllowedMethods(
