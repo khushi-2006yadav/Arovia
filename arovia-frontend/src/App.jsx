@@ -19,7 +19,7 @@ import { AroviaProvider } from "./context";
 function App() {
   return (
     <AroviaProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/Arovia">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
