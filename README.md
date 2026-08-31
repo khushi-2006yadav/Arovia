@@ -788,7 +788,7 @@ It is not intended to diagnose diseases, prescribe medicines, replace a doctor, 
 Medicine information, generic-medicine information, side-effect information and AI-generated explanations should be verified with a qualified healthcare professional before making medical decisions.
 TEAM MEMBERS-:
 1)Nandani Chaudhary-:UI/UX design
-2)Khushi Yadav-:
+2)Khushi Yadav-:Presentation and ppt
 3)Saksham Aggarwal-:AI
 4)Nikhil Pathak-:Backend(spring boot)
 5)Navraj Tanwar-:Javascript
